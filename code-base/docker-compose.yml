@@ -1,0 +1,17 @@
+services:
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile.nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf:ro
+      - ./nginx/detect.lua:/etc/nginx/lua/detect.lua:ro
+    depends_on:
+      - ai-api
+
+  ai-api:
+    build: ./ai-api
+    ports:
+      - "8000:8000"

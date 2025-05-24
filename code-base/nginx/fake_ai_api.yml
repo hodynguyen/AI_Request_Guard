@@ -1,0 +1,5 @@
+ai-api:
+  image: hashicorp/http-echo
+  command: ['-text= { "decision": "allow" } ']
+  ports:
+    - "8000:5678"
